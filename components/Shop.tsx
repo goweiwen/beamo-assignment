@@ -11,13 +11,7 @@ function Shop(props: ShopProps) {
     <ul className="flex flex-wrap justify-center">
       {props.items.map((item) => (
         <li key={item.sku} className="my-2 md:mx-2">
-          <ShopItem
-            sku={item.sku}
-            name={item.name}
-            imageUrl={item.imageUrl}
-            description={item.description}
-            price={item.price}
-          />
+          <ShopItem product={item} />
         </li>
       ))}
     </ul>

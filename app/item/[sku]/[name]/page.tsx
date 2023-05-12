@@ -1,6 +1,8 @@
 import Image from "next/image";
 
 import { products } from "@/lib/products";
+import { addItem } from "@/app/cart/cartSlice";
+import AddToCartButton from "@/components/AddToCartButton";
 
 function ProductPage({ params }: { params: { sku: string } }) {
   const sku = Number(params.sku);
@@ -23,7 +25,7 @@ function ProductPage({ params }: { params: { sku: string } }) {
         <p>${product.price}</p>
       </div>
       <footer className="flex justify-end px-2 sm:px-0">
-        <button className="button button-lg button-primary">Add to Cart</button>
+        <AddToCartButton product={product} quantity={1} />
       </footer>
     </main>
   );

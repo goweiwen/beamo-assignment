@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { useAppSelector, useAppDispatch } from "app/hooks";
 import { Product } from "@/lib/types";
+import { store } from "@/app/store";
 
 interface ShoppingCartItemProps {
   product: Product;
@@ -38,7 +40,14 @@ function ShopItem({ product, quantity }: ShoppingCartItemProps) {
         <p>${quantity * product.price}</p>
       </div>
       <footer className="flex items-center justify-end">
-        <button className="button button-normal button-md">Remove</button>
+        <button
+          className="button button-normal button-md"
+          onClick={() =>
+            store.dispatch({ type: "cart/removeItem", payload: product.sku })
+          }
+        >
+          Remove
+        </button>
       </footer>
     </div>
   );
