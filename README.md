@@ -1,6 +1,27 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Beamo Store
 
-## Getting Started
+## Introduction
+
+This repository is an example of how to integrate Beamo into a Next.js storefront.
+
+## Implementation
+
+### Payment Flow
+
+1. User adds product to cart from homepage (`/`) or product page (`/items/<id>/<name>`)
+2. User visits cart page (`/cart`)
+3. User clicks checkout and is redirected to checkout page (`/checkout`)
+4. User enters contact details and shipping address
+5. User clicks `Payment` button, and a `POST` request is sent to `/api/checkout` on the server.
+6. Server validates the form details using `jsonschema` and attempt to create a payment page using Beamo's API, then send the URL back to the user.
+7. User's browser will open a new window to complete payment.
+8. (unimplemented) A webhook on the server side will validate that payment has been completed, and inform the user (via long polling or webhooks)
+
+### Shopping Cart
+
+The shopping cart is managed using Redux on the client only and is not server-side rendered. We persist the cart information to `localStorage` for persistence. The cart is cleared when a checkout is complete.
+
+## Development
 
 First, run the development server:
 
@@ -13,22 +34,3 @@ pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

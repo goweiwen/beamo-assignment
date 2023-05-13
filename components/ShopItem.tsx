@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { addItem } from "@/app/cart/cartSlice";
 import { Product } from "@/lib/types";
 import AddToCartButton from "./AddToCartButton";
 

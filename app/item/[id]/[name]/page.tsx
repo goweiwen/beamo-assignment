@@ -1,7 +1,6 @@
 import Image from "next/image";
 
 import { products } from "@/lib/products";
-import { addItem } from "@/app/cart/cartSlice";
 import AddToCartButton from "@/components/AddToCartButton";
 
 function ProductPage({ params }: { params: { id: string } }) {

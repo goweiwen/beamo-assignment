@@ -4,7 +4,7 @@ import { products } from "@/lib/products";
 export default function App() {
   return (
     <main className="container mx-auto flex">
-      <Shop items={products} />
+      <Shop items={Array.from(products.values())} />
     </main>
   );
 }

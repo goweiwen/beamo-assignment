@@ -12,6 +12,8 @@ export const cartSlice = createSlice({
     items: [],
   },
   reducers: {
+    // Add a new item to the cart. If an item of the same ID already exists,
+    // increase the quantity of it instead.
     addItem: (state: CartState, action: PayloadAction<CartItem>) => {
       let item = state.items.find(
         (item) => item.product.id === action.payload.product.id
@@ -22,11 +24,13 @@ export const cartSlice = createSlice({
         state.items.push(action.payload);
       }
     },
+    // Remove an item from the cart by product ID
     removeItem: (state: CartState, action: PayloadAction<string>) => {
       state.items = state.items.filter(
         (item) => item.product.id !== action.payload
       );
     },
+    // Update the quantity of an item in the cart
     updateItem: (state: CartState, action: PayloadAction<CartItem>) => {
       const item = state.items.find(
         (item) => item.product.id === action.payload.product.id
@@ -35,6 +39,7 @@ export const cartSlice = createSlice({
         item.quantity = action.payload.quantity;
       }
     },
+    // Empty the cart
     clear: (state: CartState) => {
       state.items = [];
     },

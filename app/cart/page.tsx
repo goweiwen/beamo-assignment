@@ -5,7 +5,6 @@ import Link from "next/link";
 
 import ShoppingCart from "@/components/ShoppingCart";
 import { selectItems } from "./cartSlice";
-import { store } from "../store";
 
 function Cart() {
   const items = useSelector(selectItems);

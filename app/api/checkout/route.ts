@@ -72,6 +72,10 @@ type BeamoPaymentPagesResponse = {
   };
 };
 
+/**
+ * Receives and validates a checkout request, then attempts to create a payment
+ * page using Beamo's API and returns a URL to the payment page
+ * */
 export async function POST(req: NextRequest) {
   const json = await req.json();
   const validateResult = validate(json, schema);
