@@ -4,6 +4,10 @@
 
 This repository is an example of how to integrate Beamo into a Next.js storefront.
 
+## Live Demo
+
+[Try it out on Vercel!](https://beamo-assignment.vercel.app/)
+
 ## Implementation
 
 ### Payment Flow
