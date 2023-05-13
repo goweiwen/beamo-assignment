@@ -1,12 +1,12 @@
-export interface Product {
-  sku: number;
+export type Product = {
+  id: string;
   name: string;
   imageUrl: string;
   description: string;
   price: number;
-}
+};
 
-export interface CartItem {
+export type CartItem = {
   product: Product;
   quantity: number;
-}
+};

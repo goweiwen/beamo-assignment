@@ -3,7 +3,7 @@ import Image from "next/image";
 
 function Header() {
   return (
-    <header className="h-12 bg-gray-100">
+    <header className="h-12 bg-white shadow-md">
       <div className="container mx-auto flex flex-row justify-between">
         <Link href="/">
           <Image
@@ -14,17 +14,16 @@ function Header() {
           />
         </Link>
         <div className="me-2 flex h-full py-2">
-          <Link href="/cart">
-            <button className="button button-md button-normal">
-              <Image
-                className="mr-1 inline-block"
-                src={require("../public/images/cart.svg")}
-                width="16"
-                height="14"
-                alt="Cart"
-              />
-              Cart
-            </button>
+          <Link
+            href="/cart"
+            className="button-normal mr-1 flex aspect-square h-full w-8 items-center justify-center rounded-full"
+          >
+            <Image
+              src={require("../public/images/cart.svg")}
+              width="16"
+              height="14"
+              alt="Cart"
+            />
           </Link>
         </div>
       </div>

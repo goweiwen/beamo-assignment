@@ -1,55 +1,83 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { useAppSelector, useAppDispatch } from "app/hooks";
 import { Product } from "@/lib/types";
 import { store } from "@/app/store";
 
-interface ShoppingCartItemProps {
+type ShoppingCartItemProps = {
   product: Product;
   quantity: number;
-}
+};
 
 const formatSlug = (name: string) =>
   name.replace(/ /g, "+").replace(/[^a-zA-Z0-9+]/g, "");
 
 function ShopItem({ product, quantity }: ShoppingCartItemProps) {
+  const handleRemoveClick = () => {
+    store.dispatch({ type: "cart/removeItem", payload: product.id });
+  };
+
   return (
-    <div className="flex w-full flex-row px-2 sm:px-0">
-      <Link
-        href={`/item/${product.sku}/${formatSlug(product.name)}`}
-        className="link"
-      >
-        <Image
-          src={product.imageUrl}
-          alt={product.name}
-          className="w-32 object-cover"
-        />
-      </Link>
-      <div className="mx-2 flex flex-1 items-center sm:mx-4">
-        <div>
-          <h1 className="font-bold">{product.name}</h1>
-          <p>{product.description}</p>
-          <p>${product.price}</p>
-        </div>
-      </div>
-      <div className="mx-2 flex items-center sm:mx-4">
-        <p>{quantity}x</p>
-      </div>
-      <div className="mx-2 flex items-center sm:mx-4">
-        <p>${quantity * product.price}</p>
-      </div>
-      <footer className="flex items-center justify-end">
+    <tr>
+      <td className="w-32">
+        <Link
+          href={`/item/${product.id}/${formatSlug(product.name)}`}
+          className="link"
+        >
+          <Image
+            src={product.imageUrl}
+            alt={product.name}
+            className="w-32 object-cover"
+          />
+        </Link>
+      </td>
+      <td className="px-2">
+        <p>{product.name}</p>
+        <p className="hidden text-sm sm:inline">{product.description}</p>
+      </td>
+      <td className="mx-2 text-center">
+        <button
+          className="button button-sm button-normal hidden sm:inline"
+          onClick={() =>
+            store.dispatch({
+              type: "cart/updateItem",
+              payload: { product, quantity: quantity - 1 },
+            })
+          }
+        >
+          -
+        </button>
+        <span className="px-2">{quantity}</span>
+        <button
+          className="button button-sm button-normal hidden sm:inline"
+          onClick={() =>
+            store.dispatch({
+              type: "cart/updateItem",
+              payload: { product, quantity: quantity + 1 },
+            })
+          }
+        >
+          +
+        </button>
+      </td>
+      <td className="px-2 text-center">
+        <span>
+          $
+          {(quantity * product.price).toLocaleString(undefined, {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          })}
+        </span>
+      </td>
+      <td className="px-2 text-right">
         <button
           className="button button-normal button-md"
-          onClick={() =>
-            store.dispatch({ type: "cart/removeItem", payload: product.sku })
-          }
+          onClick={handleRemoveClick}
         >
           Remove
         </button>
-      </footer>
-    </div>
+      </td>
+    </tr>
   );
 }
 

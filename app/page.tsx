@@ -3,7 +3,7 @@ import { products } from "@/lib/products";
 
 export default function App() {
   return (
-    <main className="container mx-auto my-2 flex">
+    <main className="container mx-auto flex">
       <Shop items={products} />
     </main>
   );

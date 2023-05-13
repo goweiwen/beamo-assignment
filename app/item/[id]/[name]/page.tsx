@@ -4,16 +4,16 @@ import { products } from "@/lib/products";
 import { addItem } from "@/app/cart/cartSlice";
 import AddToCartButton from "@/components/AddToCartButton";
 
-function ProductPage({ params }: { params: { sku: string } }) {
-  const sku = Number(params.sku);
-  const product = products[sku];
+function ProductPage({ params }: { params: { id: string } }) {
+  const id = params.id;
+  const product = products.get(id);
 
   if (!product) {
     return null;
   }
 
   return (
-    <main className="container mx-auto my-2 sm:px-3">
+    <main className="container mx-auto sm:px-3">
       <Image
         src={product.imageUrl}
         alt={product.name}

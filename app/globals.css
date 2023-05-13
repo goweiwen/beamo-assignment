@@ -4,15 +4,15 @@
 
 @layer components {
   .button {
-    @apply py-1 px-2 rounded-lg;
+    @apply py-1 px-2 rounded-full;
   }
 
   .button-primary {
-    @apply transition-colors text-black bg-yellow-400 hover:bg-yellow-300 active:bg-yellow-500;
+    @apply transition-colors text-black bg-yellow-400 disabled:bg-gray-300 disabled:text-gray-500 hover:bg-yellow-300 active:bg-yellow-500;
   }
 
   .button-normal {
-    @apply transition-colors text-black bg-gray-200 hover:bg-gray-100 active:bg-gray-300;
+    @apply transition-colors text-black bg-gray-200 hover:bg-gray-100 active:bg-gray-300 disabled:bg-gray-300 disabled:text-gray-500;
   }
 
   .button-lg {
@@ -23,7 +23,15 @@
     @apply px-2 py-1;
   }
 
+  .button-sm {
+    @apply text-sm;
+  }
+
   .link {
     @apply hover:underline;
+  }
+
+  .input {
+    @apply px-2 py-1 rounded-md border-gray-100 border;
   }
 }

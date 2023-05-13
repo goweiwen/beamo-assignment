@@ -5,18 +5,18 @@ import { addItem } from "@/app/cart/cartSlice";
 import { Product } from "@/lib/types";
 import AddToCartButton from "./AddToCartButton";
 
-interface ShopItemProps {
+type ShopItemProps = {
   product: Product;
-}
+};
 
 const formatSlug = (name: string) =>
   name.replace(/ /g, "+").replace(/[^a-zA-Z0-9+]/g, "");
 
 function ShopItem({ product }: ShopItemProps) {
   return (
-    <div className="w-full bg-gray-100 p-4 md:w-96">
+    <div className="w-full overflow-hidden bg-white pb-3 sm:w-96 sm:shadow-md">
       <Link
-        href={`/item/${product.sku}/${formatSlug(product.name)}`}
+        href={`/item/${product.id}/${formatSlug(product.name)}`}
         className="link"
       >
         <Image
@@ -24,13 +24,13 @@ function ShopItem({ product }: ShopItemProps) {
           alt={product.name}
           className="object-cover"
         />
-        <div className="mt-1 md:mt-2">
+        <div className="mt-2 px-2 md:mt-3 md:px-3">
           <h1 className="font-bold">{product.name}</h1>
           <p>{product.description}</p>
           <p>${product.price}</p>
         </div>
       </Link>
-      <footer className="flex justify-end">
+      <footer className="flex justify-end px-2">
         <AddToCartButton product={product} quantity={1} />
       </footer>
     </div>
